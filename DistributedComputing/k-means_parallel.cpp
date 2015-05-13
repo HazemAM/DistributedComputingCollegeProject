@@ -103,7 +103,7 @@ void main(int argc, char **argv)
 
 			//Sending loop:
 			int startIndex, i;
-			#pragma omp for private(i) schedule(dynamic, elementsPerProcess)
+			//#pragma omp for private(i) schedule(dynamic, elementsPerProcess)
 			for(i=1; i < size; i++)
 			{
 				startIndex = (i-1) * elementsPerProcess;
@@ -112,7 +112,7 @@ void main(int argc, char **argv)
 			}
 
 			//Receiving and summing loop:
-			#pragma omp for private(i) schedule(dynamic, elementsPerProcess)
+			//#pragma omp for private(i) schedule(dynamic, elementsPerProcess)
 			for(i=1; i < size; i++)
 			{
 				MPI_Recv(partial_means, totalClusters, MPI_DOUBLE, MPI_ANY_SOURCE, TAG_MEANS, MPI_COMM_WORLD, &statusReceive);
